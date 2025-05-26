@@ -8,8 +8,6 @@ class PaxosAnimation(Scene):
         self.play(FadeOut(opening_text))
         self.wait(4)
 
-        self.play(FadeOut(title4), FadeOut(bullets), FadeOut(thanks))
-        self.wait(3.5)
         def create_acceptors():
             acceptors = VGroup(*[
                 Circle(radius=0.5, color=GREEN).shift(UP * (i * 2 - 2)) for i in range(3)
