@@ -2,12 +2,15 @@ from manim import *
 
 class PaxosAnimation(Scene):
     def construct(self):
-        opening_text = Text("Paxos Animation Presentation\nBy Kasra Noorbakhsh\nStudent Number: 810100230", font_size=32, color=WHITE).to_edge(UP, buff=0.7)
+        opening_text = Text("Paxos Animation Presentation\n\n\nBy Kasra Noorbakhsh\n\n\nStudent Number: 810100230", font_size=32, color=WHITE)
+        .to_edge(UP, buff=0.7)
         self.play(Write(opening_text))
         self.wait(4)
         self.play(FadeOut(opening_text))
         self.wait(4)
 
+        self.play(FadeOut(title4), FadeOut(bullets), FadeOut(thanks))
+        self.wait(3.5)
         def create_acceptors():
             acceptors = VGroup(*[
                 Circle(radius=0.5, color=GREEN).shift(UP * (i * 2 - 2)) for i in range(3)
@@ -19,7 +22,7 @@ class PaxosAnimation(Scene):
 
         title1 = Text("Scenario 1: Single Proposer", font_size=36).to_edge(UP, buff=0.7)
         self.play(Write(title1))
-        self.wait(2.0)
+        self.wait(3.5)
 
         proposer = Circle(radius=0.5, color=BLUE).shift(LEFT * 3 + DOWN * 1.5)
         proposer_txt = Text("Proposer P1", font_size=24).next_to(proposer, DOWN, buff=0.4)
@@ -30,7 +33,7 @@ class PaxosAnimation(Scene):
         self.play(Create(proposer), Write(proposer_txt))
         self.play(Create(acceptors), Write(acc_txts))
         self.play(Create(learner), Write(learner_txt))
-        self.wait(2.0)
+        self.wait(3.5)
 
         prepare_arrows = VGroup()
         prepare_labels = VGroup()
@@ -39,8 +42,8 @@ class PaxosAnimation(Scene):
             lbl = Text("Prepare: #1", font_size=18).next_to(arr, UP, buff=0.1)
             prepare_arrows.add(arr)
             prepare_labels.add(lbl)
-            self.play(GrowArrow(arr), Write(lbl), run_time=1.5)
-        self.wait(2.0)
+            self.play(GrowArrow(arr), Write(lbl), run_time=2.5)
+        self.wait(3.5)
         self.play(FadeOut(prepare_arrows), FadeOut(prepare_labels))
 
         promise_arrows = VGroup()
@@ -50,8 +53,8 @@ class PaxosAnimation(Scene):
             lbl = Text("Promise", font_size=18).next_to(arr, UP, buff=0.3 + i * 0.2) 
             promise_arrows.add(arr)
             promise_labels.add(lbl)
-            self.play(GrowArrow(arr), Write(lbl), run_time=1.5)
-        self.wait(2.0)
+            self.play(GrowArrow(arr), Write(lbl), run_time=2.5)
+        self.wait(3.5)
         self.play(FadeOut(promise_arrows), FadeOut(promise_labels))
 
         accept_arrows = VGroup()
@@ -61,8 +64,8 @@ class PaxosAnimation(Scene):
             lbl = Text("Accept: v=42", font_size=18).next_to(arr, UP, buff=0.3)
             accept_arrows.add(arr)
             accept_labels.add(lbl)
-            self.play(GrowArrow(arr), Write(lbl), run_time=1.5)
-        self.wait(2.0)
+            self.play(GrowArrow(arr), Write(lbl), run_time=2.5)
+        self.wait(3.5)
         self.play(FadeOut(accept_arrows), FadeOut(accept_labels))
 
         learn_arrows = VGroup()
@@ -72,12 +75,12 @@ class PaxosAnimation(Scene):
             lbl = Text("Accepted", font_size=18).next_to(arr, UP, buff=0.1)  
             learn_arrows.add(arr)
             learn_labels.add(lbl)
-            self.play(GrowArrow(arr), Write(lbl), run_time=1.5)
-        self.wait(2.0)
+            self.play(GrowArrow(arr), Write(lbl), run_time=2.5)
+        self.wait(3.5)
 
         result1 = Text("Value 42 chosen", font_size=28, color=YELLOW).shift(DOWN * 3.5)
         self.play(Write(result1))
-        self.wait(2.0)
+        self.wait(3.5)
 
         self.play(
             FadeOut(title1), FadeOut(proposer), FadeOut(proposer_txt),
@@ -85,11 +88,11 @@ class PaxosAnimation(Scene):
             FadeOut(learn_arrows), FadeOut(learn_labels),
             FadeOut(result1)
         )
-        self.wait(2.0)
+        self.wait(3.5)
 
         title2 = Text("Scenario 2: Two Proposers Competing", font_size=36).to_edge(UP, buff=0.7)
         self.play(Write(title2))
-        self.wait(2.0)
+        self.wait(3.5)
 
         p1 = Circle(radius=0.5, color=BLUE).shift(LEFT * 4 + DOWN * 1)
         p2 = Circle(radius=0.5, color=RED).shift(RIGHT * 4 + UP * 1)
@@ -102,7 +105,7 @@ class PaxosAnimation(Scene):
         self.play(Create(p1), Write(p1_txt))
         self.play(Create(p2), Write(p2_txt))
         self.play(Create(acceptors), Write(acc_txts))
-        self.wait(2.0)
+        self.wait(3.5)
 
         p1_prepare_arrows = VGroup()
         p1_prepare_labels = VGroup()
@@ -111,8 +114,8 @@ class PaxosAnimation(Scene):
             lbl = Text("P1: Prepare #1", font_size=18).next_to(arr, UP, buff=0.1)
             p1_prepare_arrows.add(arr)
             p1_prepare_labels.add(lbl)
-            self.play(GrowArrow(arr), Write(lbl), run_time=1.5)
-        self.wait(2.0)
+            self.play(GrowArrow(arr), Write(lbl), run_time=2.5)
+        self.wait(3.5)
         self.play(FadeOut(p1_prepare_arrows), FadeOut(p1_prepare_labels))
 
         p2_prepare_arrows = VGroup()
@@ -122,8 +125,8 @@ class PaxosAnimation(Scene):
             lbl = Text("P2: Prepare #2", font_size=18).next_to(arr, DOWN, buff=0.1)
             p2_prepare_arrows.add(arr)
             p2_prepare_labels.add(lbl)
-            self.play(GrowArrow(arr), Write(lbl), run_time=1.5)
-        self.wait(2.0)
+            self.play(GrowArrow(arr), Write(lbl), run_time=2.5)
+        self.wait(3.5)
         self.play(FadeOut(p2_prepare_arrows), FadeOut(p2_prepare_labels))
 
         promise_arrows = VGroup()
@@ -133,8 +136,8 @@ class PaxosAnimation(Scene):
             lbl = Text("Promise", font_size=18).next_to(arr, UP, buff=0.3 + i * 0.2)  
             promise_arrows.add(arr)
             promise_labels.add(lbl)
-            self.play(GrowArrow(arr), Write(lbl), run_time=1.5)
-        self.wait(2.0)
+            self.play(GrowArrow(arr), Write(lbl), run_time=2.5)
+        self.wait(3.5)
         self.play(FadeOut(promise_arrows), FadeOut(promise_labels))
 
         accept_arrows = VGroup()
@@ -144,24 +147,24 @@ class PaxosAnimation(Scene):
             lbl = Text("Accept: v=84", font_size=18).next_to(arr, DOWN, buff=0.3)
             accept_arrows.add(arr)
             accept_labels.add(lbl)
-            self.play(GrowArrow(arr), Write(lbl), run_time=1.5)
-        self.wait(2.0)
+            self.play(GrowArrow(arr), Write(lbl), run_time=2.5)
+        self.wait(3.5)
         self.play(FadeOut(accept_arrows), FadeOut(accept_labels))
 
         result2 = Text("P2 wins: Value 84 chosen", font_size=28, color=RED).shift(DOWN * 3.5)
         self.play(Write(result2))
-        self.wait(2.0)
+        self.wait(3.5)
 
         self.play(
             FadeOut(title2), FadeOut(p1), FadeOut(p2), FadeOut(p1_txt), FadeOut(p2_txt),
             FadeOut(acceptors), FadeOut(acc_txts),
             FadeOut(result2)
         )
-        self.wait(2.0)
+        self.wait(3.5)
 
         title3 = Text("Scenario 3: Proposer Failure & Recovery", font_size=36).to_edge(UP, buff=0.7)
         self.play(Write(title3))
-        self.wait(2.0)
+        self.wait(3.5)
 
         p1 = Circle(radius=0.5, color=BLUE).shift(LEFT * 3)
         p2 = Circle(radius=0.5, color=RED).shift(RIGHT * 3)
@@ -172,7 +175,7 @@ class PaxosAnimation(Scene):
         self.play(Create(p1), Write(p1_txt))
         self.play(Create(p2), Write(p2_txt))
         self.play(Create(acceptors), Write(acc_txts))
-        self.wait(2.0)
+        self.wait(3.5)
 
         p1_prepare_arrows = VGroup()
         p1_prepare_labels = VGroup()
@@ -181,12 +184,12 @@ class PaxosAnimation(Scene):
             lbl = Text("P1: Prepare #1", font_size=18).next_to(arr, UP, buff=0.1)
             p1_prepare_arrows.add(arr)
             p1_prepare_labels.add(lbl)
-            self.play(GrowArrow(arr), Write(lbl), run_time=1.5)
-        self.wait(2.0)
+            self.play(GrowArrow(arr), Write(lbl), run_time=2.5)
+        self.wait(3.5)
         self.play(FadeOut(p1_prepare_arrows), FadeOut(p1_prepare_labels))
 
-        self.play(FadeOut(p1), FadeOut(p1_txt), run_time=1.5)
-        self.wait(2.0)
+        self.play(FadeOut(p1), FadeOut(p1_txt), run_time=2.5)
+        self.wait(3.5)
 
         p2_prepare_arrows = VGroup()
         p2_prepare_labels = VGroup()
@@ -195,8 +198,8 @@ class PaxosAnimation(Scene):
             lbl = Text("P2: Prepare #2", font_size=18).next_to(arr, DOWN, buff=0.1)
             p2_prepare_arrows.add(arr)
             p2_prepare_labels.add(lbl)
-            self.play(GrowArrow(arr), Write(lbl), run_time=1.5)
-        self.wait(2.0)
+            self.play(GrowArrow(arr), Write(lbl), run_time=2.5)
+        self.wait(3.5)
         self.play(FadeOut(p2_prepare_arrows), FadeOut(p2_prepare_labels))
 
         accept_arrows = VGroup()
@@ -206,24 +209,24 @@ class PaxosAnimation(Scene):
             lbl = Text("P2: Accept v=99", font_size=18).next_to(arr, UP, buff=0.1)
             accept_arrows.add(arr)
             accept_labels.add(lbl)
-            self.play(GrowArrow(arr), Write(lbl), run_time=1.5)
-        self.wait(2.0)
+            self.play(GrowArrow(arr), Write(lbl), run_time=2.5)
+        self.wait(3.5)
         self.play(FadeOut(accept_arrows), FadeOut(accept_labels))
 
         result3 = Text("P2 recovers: Value 99 chosen", font_size=28, color=RED).shift(DOWN * 3.5)
         self.play(Write(result3))
-        self.wait(2.0)
+        self.wait(3.5)
 
         self.play(
             FadeOut(title3), FadeOut(p2), FadeOut(p2_txt),
             FadeOut(acceptors), FadeOut(acc_txts),
             FadeOut(result3)
         )
-        self.wait(2.0)
+        self.wait(3.5)
 
         title4 = Text("Discussion: Paxos Guarantees", font_size=36).to_edge(UP, buff=0.7)
         self.play(Write(title4))
-        self.wait(2.0)
+        self.wait(3.5)
 
         lines = [
             "• Safety: Only one value is ever chosen",
@@ -235,12 +238,12 @@ class PaxosAnimation(Scene):
             Text(line, font_size=28) for line in lines
         ]).arrange(DOWN, center=True, buff=0.5).shift(UP * 0.5)
         for b in bullets:
-            self.play(Write(b), run_time=1.5)
-            self.wait(2.0)
+            self.play(Write(b), run_time=2.5)
+            self.wait(4.5)
 
         thanks = Text("Thanks for watching!", font_size=32, color=YELLOW).shift(DOWN * 3.5)
         self.play(Write(thanks))
-        self.wait(2.0)
+        self.wait(3.5)
 
         self.play(FadeOut(title4), FadeOut(bullets), FadeOut(thanks))
-        self.wait(2.0)
+        self.wait(3.5)
