@@ -3,6 +3,7 @@ from manim import *
 class PaxosAnimation(Scene):
     def construct(self):
         opening_text = Text("Paxos Scenarios Animation\n\n\n\nBy Kasra Noorbakhsh\n\n\n\nStudent Number: 810100230", font_size=32, color=BLUE).to_edge(UP, buff=0.7)
+        self.wait(4)
         self.play(Write(opening_text))
         self.wait(4)
         self.play(FadeOut(opening_text))
