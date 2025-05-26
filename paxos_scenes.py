@@ -11,7 +11,7 @@ class PaxosAnimation(Scene):
             ])
             return acceptors, acc_txts
 
-        title1 = Text("Scenario 1: Single Proposer (No Conflict)", font_size=36).to_edge(UP, buff=0.7)
+        title1 = Text("Scenario 1: Single Proposer", font_size=36).to_edge(UP, buff=0.7)
         self.play(Write(title1))
         self.wait(1)
 
