@@ -2,8 +2,7 @@ from manim import *
 
 class PaxosAnimation(Scene):
     def construct(self):
-        opening_text = Text("Paxos Animation Presentation\n\n\nBy Kasra Noorbakhsh\n\n\nStudent Number: 810100230", font_size=32, color=WHITE)
-        .to_edge(UP, buff=0.7)
+        opening_text = Text("Paxos Animation Presentation\n\n\nBy Kasra Noorbakhsh\n\n\nStudent Number: 810100230", font_size=32, color=WHITE).to_edge(UP, buff=0.7)
         self.play(Write(opening_text))
         self.wait(4)
         self.play(FadeOut(opening_text))
