@@ -15,12 +15,10 @@ class PaxosAnimation(Scene):
         self.play(Write(title1))
         self.wait(1)
 
-        proposer = Circle(radius=0.5, color=BLUE).shift(LEFT * 4 + UP * 1.5)
+        proposer = Circle(radius=0.5, color=BLUE).shift(LEFT * 3 + DOWN * 1.5)
         proposer_txt = Text("Proposer P1", font_size=24).next_to(proposer, DOWN, buff=0.4)
         acceptors, acc_txts = create_acceptors()
-        acceptors.shift(RIGHT * 2 + UP * 1.5) 
-        acc_txts.shift(RIGHT * 2 + UP * 1.5)
-        learner = Circle(radius=0.5, color=YELLOW).shift(DOWN * 1 + UP * 1.5)
+        learner = Circle(radius=0.5, color=YELLOW).shift(DOWN * 3.5)
         learner_txt = Text("Learner", font_size=24).next_to(learner, DOWN, buff=0.4)
 
         self.play(Create(proposer), Write(proposer_txt))
@@ -32,40 +30,40 @@ class PaxosAnimation(Scene):
         prepare_labels = VGroup()
         for i, acc in enumerate(acceptors):
             arr = Arrow(proposer.get_right(), acc.get_left(), buff=0.3)
-            lbl = Text("Prepare: #1", font_size=18).next_to(arr, LEFT, buff=0.3).shift(UP * 0.2 * i)
+            lbl = Text("Prepare: #1", font_size=18).next_to(arr, UP, buff=0.1)
             prepare_arrows.add(arr)
             prepare_labels.add(lbl)
-            self.play(GrowArrow(arr), Write(lbl), run_time=0.8)
+            self.play(GrowArrow(arr), Write(lbl), run_time=1)
         self.wait(1)
 
         promise_arrows = VGroup()
         promise_labels = VGroup()
         for i, acc in enumerate(acceptors):
             arr = Arrow(acc.get_left(), proposer.get_right(), buff=0.3, color=GRAY)
-            lbl = Text("Promise", font_size=18).next_to(arr, RIGHT, buff=0.3).shift(DOWN * 0.2 * i)
+            lbl = Text("Promise", font_size=18).next_to(arr, DOWN, buff=0.1)
             promise_arrows.add(arr)
             promise_labels.add(lbl)
-            self.play(GrowArrow(arr), Write(lbl), run_time=0.8)
+            self.play(GrowArrow(arr), Write(lbl), run_time=1)
         self.wait(1)
 
         accept_arrows = VGroup()
         accept_labels = VGroup()
         for i, acc in enumerate(acceptors):
             arr = Arrow(proposer.get_right(), acc.get_left(), buff=0.3, color=BLUE)
-            lbl = Text("Accept: v=42", font_size=18).next_to(arr, LEFT, buff=0.3).shift(DOWN * 0.2 * i)
+            lbl = Text("Accept: v=42", font_size=18).next_to(arr, UP, buff=0.1)
             accept_arrows.add(arr)
             accept_labels.add(lbl)
-            self.play(GrowArrow(arr), Write(lbl), run_time=0.8)
+            self.play(GrowArrow(arr), Write(lbl), run_time=1)
         self.wait(1)
 
         learn_arrows = VGroup()
         learn_labels = VGroup()
         for i, acc in enumerate(acceptors):
             arr = Arrow(acc.get_bottom(), learner.get_top(), buff=0.3, color=ORANGE)
-            lbl = Text("Accepted", font_size=18).next_to(arr, RIGHT, buff=0.3).shift(UP * 0.2 * i)
+            lbl = Text("Accepted", font_size=18).next_to(arr, RIGHT, buff=0.1)
             learn_arrows.add(arr)
             learn_labels.add(lbl)
-            self.play(GrowArrow(arr), Write(lbl), run_time=0.8)
+            self.play(GrowArrow(arr), Write(lbl), run_time=1)
         self.wait(1)
 
         result1 = Text("Value 42 chosen", font_size=28, color=YELLOW).next_to(learner, DOWN, buff=0.6)
@@ -92,8 +90,8 @@ class PaxosAnimation(Scene):
         p1_txt = Text("P1 (#1)", font_size=24).next_to(p1, DOWN, buff=0.4)
         p2_txt = Text("P2 (#2)", font_size=24).next_to(p2, UP, buff=0.4)
         acceptors, acc_txts = create_acceptors()
-        acceptors.shift(RIGHT * 2)
-        acc_txts.shift(RIGHT * 2)
+        acceptors.shift(RIGHT * 1)
+        acc_txts.shift(RIGHT * 1)
 
         self.play(Create(p1), Write(p1_txt))
         self.play(Create(p2), Write(p2_txt))
@@ -104,40 +102,40 @@ class PaxosAnimation(Scene):
         p1_prepare_labels = VGroup()
         for i, acc in enumerate(acceptors):
             arr = Arrow(p1.get_right(), acc.get_left(), buff=0.3, color=BLUE)
-            lbl = Text("P1: Prepare #1", font_size=18).next_to(arr, LEFT, buff=0.3).shift(UP * 0.2 * i)
+            lbl = Text("P1: Prepare #1", font_size=18).next_to(arr, UP, buff=0.1)
             p1_prepare_arrows.add(arr)
             p1_prepare_labels.add(lbl)
-            self.play(GrowArrow(arr), Write(lbl), run_time=0.8)
+            self.play(GrowArrow(arr), Write(lbl), run_time=1)
         self.wait(0.5)
 
         p2_prepare_arrows = VGroup()
         p2_prepare_labels = VGroup()
         for i, acc in enumerate(acceptors):
             arr = Arrow(p2.get_right(), acc.get_left(), buff=0.3, color=RED)
-            lbl = Text("P2: Prepare #2", font_size=18).next_to(arr, RIGHT, buff=0.3).shift(DOWN * 0.2 * i)
+            lbl = Text("P2: Prepare #2", font_size=18).next_to(arr, DOWN, buff=0.1)
             p2_prepare_arrows.add(arr)
             p2_prepare_labels.add(lbl)
-            self.play(GrowArrow(arr), Write(lbl), run_time=0.8)
+            self.play(GrowArrow(arr), Write(lbl), run_time=1)
         self.wait(0.5)
 
         promise_arrows = VGroup()
         promise_labels = VGroup()
         for i, acc in enumerate(acceptors):
             arr = Arrow(acc.get_left(), p2.get_right(), buff=0.3, color=RED)
-            lbl = Text("Promise", font_size=18).next_to(arr, RIGHT, buff=0.3).shift(UP * 0.2 * i)
+            lbl = Text("Promise", font_size=18).next_to(arr, UP, buff=0.1)
             promise_arrows.add(arr)
             promise_labels.add(lbl)
-            self.play(GrowArrow(arr), Write(lbl), run_time=0.8)
+            self.play(GrowArrow(arr), Write(lbl), run_time=1)
         self.wait(0.5)
 
         accept_arrows = VGroup()
         accept_labels = VGroup()
         for i, acc in enumerate(acceptors):
             arr = Arrow(p2.get_right(), acc.get_left(), buff=0.3, color=RED)
-            lbl = Text("Accept: v=84", font_size=18).next_to(arr, LEFT, buff=0.3).shift(DOWN * 0.2 * i)
+            lbl = Text("Accept: v=84", font_size=18).next_to(arr, DOWN, buff=0.1)
             accept_arrows.add(arr)
             accept_labels.add(lbl)
-            self.play(GrowArrow(arr), Write(lbl), run_time=0.8)
+            self.play(GrowArrow(arr), Write(lbl), run_time=1)
         self.wait(0.5)
 
         result2 = Text("P2 wins: Value 84 chosen", font_size=28, color=RED).shift(DOWN * 3.5)
@@ -159,8 +157,8 @@ class PaxosAnimation(Scene):
         self.play(Write(title3))
         self.wait(0.5)
 
-        p1 = Circle(radius=0.5, color=BLUE).shift(LEFT * 4)
-        p2 = Circle(radius=0.5, color=RED).shift(RIGHT * 4)
+        p1 = Circle(radius=0.5, color=BLUE).shift(LEFT * 3)
+        p2 = Circle(radius=0.5, color=RED).shift(RIGHT * 3)
         p1_txt = Text("P1 (#1)", font_size=24).next_to(p1, DOWN, buff=0.4)
         p2_txt = Text("P2 (#2)", font_size=24).next_to(p2, DOWN, buff=0.4)
         acceptors, acc_txts = create_acceptors()
@@ -174,33 +172,33 @@ class PaxosAnimation(Scene):
         p1_prepare_labels = VGroup()
         for i, acc in enumerate(acceptors):
             arr = Arrow(p1.get_right(), acc.get_left(), buff=0.3, color=BLUE)
-            lbl = Text("P1: Prepare #1", font_size=18).next_to(arr, LEFT, buff=0.3).shift(UP * 0.2 * i)
+            lbl = Text("P1: Prepare #1", font_size=18).next_to(arr, UP, buff=0.1)
             p1_prepare_arrows.add(arr)
             p1_prepare_labels.add(lbl)
-            self.play(GrowArrow(arr), Write(lbl), run_time=0.8)
+            self.play(GrowArrow(arr), Write(lbl), run_time=1)
         self.wait(0.5)
 
-        self.play(FadeOut(p1), FadeOut(p1_txt), run_time=0.8)
+        self.play(FadeOut(p1), FadeOut(p1_txt), run_time=1)
         self.wait(0.5)
 
         p2_prepare_arrows = VGroup()
         p2_prepare_labels = VGroup()
         for i, acc in enumerate(acceptors):
             arr = Arrow(p2.get_left(), acc.get_right(), buff=0.3, color=RED)
-            lbl = Text("P2: Prepare #2", font_size=18).next_to(arr, RIGHT, buff=0.3).shift(DOWN * 0.2 * i)
+            lbl = Text("P2: Prepare #2", font_size=18).next_to(arr, DOWN, buff=0.1)
             p2_prepare_arrows.add(arr)
             p2_prepare_labels.add(lbl)
-            self.play(GrowArrow(arr), Write(lbl), run_time=0.8)
+            self.play(GrowArrow(arr), Write(lbl), run_time=1)
         self.wait(0.5)
 
         accept_arrows = VGroup()
         accept_labels = VGroup()
         for i, acc in enumerate(acceptors):
             arr = Arrow(p2.get_left(), acc.get_right(), buff=0.3, color=RED)
-            lbl = Text("P2: Accept v=99", font_size=18).next_to(arr, LEFT, buff=0.3).shift(UP * 0.2 * i)
+            lbl = Text("P2: Accept v=99", font_size=18).next_to(arr, UP, buff=0.1)
             accept_arrows.add(arr)
             accept_labels.add(lbl)
-            self.play(GrowArrow(arr), Write(lbl), run_time=0.8)
+            self.play(GrowArrow(arr), Write(lbl), run_time=1)
         self.wait(0.5)
 
         result3 = Text("P2 recovers: Value 99 chosen", font_size=28, color=RED).shift(DOWN * 3.5)
@@ -228,14 +226,13 @@ class PaxosAnimation(Scene):
             "• Tolerates failures and recovers safely"
         ]
         bullets = VGroup(*[
-            Text(line, font_size=28).shift(LEFT * 3.5 + DOWN * (i * 1.0 - 1))  # Centered vertically
-            for i, line in enumerate(lines)
-        ])
+            Text(line, font_size=28) for line in lines
+        ]).arrange(DOWN, center=True, buff=0.5).shift(UP * 0.5)
         for b in bullets:
-            self.play(Write(b), run_time=0.8)
+            self.play(Write(b), run_time=1)
             self.wait(0.5)
 
-        thanks = Text("Thanks for watching!", font_size=32, color=YELLOW).shift(DOWN * 3.5)  # Moved below bullets
+        thanks = Text("Thanks for watching!", font_size=32, color=YELLOW).shift(DOWN * 3.5)
         self.play(Write(thanks))
         self.wait(1.5)
 
